@@ -100,7 +100,7 @@
 
 
 <div class="flex flex-row">
-  <main class="basis-full xl:basis-3/4 md:basis-3/5 pb-36">
+  <main class="basis-full xl:basis-3/4 md:basis-3/5 pb-36 md:pb-0">
     <div class="heading flex flex-grow flex-col md:flex-row items-center gap-4 md:gap-2 justify-between p-4 md:p-8 bg-white z-10">
       <div class="flex gap-2 items-center">
         <img class="md:w-11 w-8" src="/favicon.svg" alt="Logo" />
