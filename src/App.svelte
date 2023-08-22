@@ -178,12 +178,19 @@
       <Button size="sm" on:click={() => {selected = new Set(); document.querySelector('html').scrollTo({ top:0, behavior:"smooth"})  }} pill color="light">Remove All</Button>
     </div>
     <div class="flex-1 min-h-0 overflow-y-auto no-scrollbar hidden md:block" id="selected-list" bind:this={selectedList}>
-      {#each selected as item}
-        <div in:fade={{ duration: 100 }} class="flex gap-1 justify-between py-5 odd:bg-slate-50 md:px-8 px-4">
-          <h3 class="text-sm font-medium truncate text-ellipsis text-slate-800">{item.title}</h3>
-          <Icon on:click={() => {removeSelected(item);}} name="close-circle-solid" class="cursor-pointer text-primary-950"></Icon>
-        </div>
-      {/each}
+      {#if selected.size }
+        {#each selected as item}
+          <div in:fade={{ duration: 100 }} class="flex gap-1 justify-between py-5 odd:bg-slate-50 md:px-8 px-4">
+            <h3 class="text-sm font-medium truncate text-ellipsis text-slate-800">{item.title}</h3>
+            <Icon on:click={() => {removeSelected(item);}} name="trash-bin-outline" class="cursor-pointer text-primary-950"></Icon>
+          </div>
+        {/each}
+      {:else}
+      <div class="flex justify-center flex-col h-full gap-1 items-center">
+        <Icon name="grid-plus-solid" class="w-32 h-32 mb-4 text-slate-300 pointer-events-none"></Icon>
+        <p class="text-slate-800 font-medium">Selected channels will appear here</p>
+      </div>
+      {/if}
     </div>
     <Button on:click={copy} size="lg" class="copy-btn relative z-10 mt-0 md:mt-8">Copy {selected.size || ''} Channel{selected.size > 1 ? 's' : ''}</Button>
   </aside>
