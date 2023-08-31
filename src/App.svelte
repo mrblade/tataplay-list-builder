@@ -13,9 +13,11 @@
   let shouldScroll = true;
   let api = "https://corsproxy.io/?https://ts-api.videoready.tv/content-detail/pub/api/v1/channels?limit=999";
   let showSpinner = true;
+  let disabled = true;
 
 
   afterUpdate(()=>{
+    disabled = !(selected.size > 0);
     if(selected.size && shouldScroll){
       selectedList.scrollTo({
         top: selectedList.scrollHeight,
@@ -175,7 +177,7 @@
   <aside class="basis-full xl:basis-1/4 md:basis-2/5 bg-slate-100 pb-4 md:pb-8 flex flex-col overflow-x-hidden fixed z-10 md:sticky w-full h-auto md:h-screen md:top-0 bottom-0 ">
     <div class="heading flex flex-row justify-between items-center md:p-8 p-4 bg-slate-100">
       <h2 class="text-sm font-bold text-slate-900 lg:text-base">Selected ({selected.size})</h2>
-      <Button size="sm" on:click={() => {selected = new Set(); document.querySelector('html').scrollTo({ top:0, behavior:"smooth"})  }} pill color="light">Remove All</Button>
+      <Button {disabled} size="sm" on:click={() => {selected = new Set(); document.querySelector('html').scrollTo({ top:0, behavior:"smooth"})  }} pill color="light">Remove All</Button>
     </div>
     <div class="flex-1 min-h-0 overflow-y-auto no-scrollbar hidden md:block" id="selected-list" bind:this={selectedList}>
       {#if selected.size }
@@ -192,7 +194,7 @@
       </div>
       {/if}
     </div>
-    <Button on:click={copy} size="lg" class="copy-btn relative z-10 mt-0 md:mt-8">Copy {selected.size || ''} Channel{selected.size > 1 ? 's' : ''}</Button>
+    <Button {disabled} on:click={copy} size="lg" class="copy-btn relative z-10 mt-0 md:mt-8">Copy {selected.size || ''} Channel{selected.size > 1 ? 's' : ''}</Button>
   </aside>
 </div>
 
