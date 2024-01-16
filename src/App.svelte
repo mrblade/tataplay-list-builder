@@ -11,7 +11,7 @@
   let query = "";
   let selectedList;
   let shouldScroll = true;
-  let api = "https://corsproxy.io/?https://ts-api.videoready.tv/content-detail/pub/api/v1/channels?limit=999";
+  let api = "https://api.codetabs.com/v1/proxy/?quest=https://ts-api.videoready.tv/content-detail/pub/api/v1/channels?limit=999";
   let showSpinner = true;
   let disabled = true;
 
